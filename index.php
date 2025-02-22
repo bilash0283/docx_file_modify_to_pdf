@@ -10,7 +10,6 @@
 </head>
 
 <body>
-
     <div class="container">
         <div class="row my-5">
             <div class="col-md-6 mx-auto">
@@ -19,30 +18,15 @@
                         <h2 class="text-center text-semibold text-success">Fill The From for Agent Agrement</h2>
                     </div>
                     <div class="card-body">
-                        <form action="" method="POST">
+                        <form action="docx_file_modify.php" method="POST">
                             <div class="my-2">
-                                <label for="name">Name</label>
+                                <label for="name">Agent Name</label>
                                 <input type="text" name="name" placeholder="Full Name" id="name"
                                     class="form-control my-1">
                             </div>
                             <div class="my-2">
-                                <label for="email">Email</label>
-                                <input type="email" name="email" placeholder="E-mail" id="email"
-                                    class="form-control my-1">
-                            </div>
-                            <div class="my-2">
-                                <label for="country">Country Name</label>
-                                <input type="text" name="country" placeholder="Country Name" id="country"
-                                    class="form-control my-1">
-                            </div>
-                            <div class="my-2">
-                                <label for="phone">Phone</label>
-                                <input type="number" name="phone" placeholder="Phone" id="phone"
-                                    class="form-control my-1">
-                            </div>
-                            <div class="my-2">
-                                <label for="start_date">Agrement Date</label>
-                                <input type="date" name="start_date" id="start_date"
+                                <label for="position">Position</label>
+                                <input type="text" name="position" placeholder="Your Position" id="position"
                                     class="form-control my-1">
                             </div>
                             <div class="my-2">
@@ -56,11 +40,16 @@
                                     class="form-control my-1">
                             </div>
                             <div class="my-2">
-                                <label for="position">Position</label>
-                                <input type="text" name="position" placeholder="Your Position" id="position"
+                                <label for="country">Country Name</label>
+                                <input type="text" name="country" placeholder="Country Name" id="country"
                                     class="form-control my-1">
                             </div>
-                            <input type="button" name="btn" class="btn btn-success btn-sm" value="Submit" />
+                            <div class="my-2">
+                                <label for="start_date">Agrement Start Date</label>
+                                <input type="date" name="start_date" id="start_date"
+                                    class="form-control my-1">
+                            </div>
+                            <input type="submit" name="btn" class="btn btn-success btn-sm" value="Submit" />
                         </form>
                     </div>
                 </div>
