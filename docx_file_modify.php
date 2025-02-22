@@ -33,10 +33,10 @@ if (isset($_POST['btn'])) {
         $templateProcessor->saveAs($outputFile);
 
         // Provide the download link
-        echo "Document generated successfully: <a href='$outputFile' download>Download Here</a>";
+        echo "Document generated successfully: <a href='$outputFile' download>Download Here</a> <br> <br>";
 
         // Debug: Show the replacements
-        echo "<br>Replacements Done: <br>";
+        echo "Docx file modify by This Update Content : - <br>";
         echo "Name: $name <br>";
         echo "Country: $country <br>";
         echo "Agreement Date: $start_date <br>";
