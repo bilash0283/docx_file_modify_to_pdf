@@ -11,7 +11,15 @@ if (isset($_POST['btn'])) {
     $start_date = strtoupper($_POST['start_date']);
     $company = strtoupper($_POST['company']);
     $address = ucwords(strtolower($_POST['address']));
-    $position = ucwords(strtolower($_POST['position']));
+    $position = strtoupper($_POST['position']);
+
+    
+    $dateObj = DateTime::createFromFormat('d/m/Y', $start_date);
+    if ($dateObj === false) {
+        echo "Error: Invalid date format. Please ensure the date is in 'dd/mm/yyyy' format.";
+        exit;
+    }
+    $formatted_date = $dateObj->format('Y-m-d');
 
 
 
@@ -43,6 +51,7 @@ if (isset($_POST['btn'])) {
         echo "Company Name: $company <br>";
         echo "Company Address: $address <br>";
         echo "Position: $position <br>";
+        echo "Position: $formatted_date <br>";
 
     } catch (Exception $e) {
         echo "Error: Could not load the template or save the document. " . $e->getMessage();
