@@ -13,16 +13,11 @@ if (isset($_POST['btn'])) {
     $address = ucwords(strtolower($_POST['address']));
     $position = strtoupper($_POST['position']);
 
-    
-    $dateObj = DateTime::createFromFormat('d/m/Y', $start_date);
-    if ($dateObj === false) {
-        echo "Error: Invalid date format. Please ensure the date is in 'dd/mm/yyyy' format.";
-        exit;
-    }
-    $formatted_date = $dateObj->format('Y-m-d');
+    $first_date = date("d F Y", strtotime($start_date));
 
-
-
+    $date = new DateTime($first_date);
+    $date->modify("+2 years"); 
+    $endDate = $date->format("d F Y");
 
     // Load the DOCX template
     try {
@@ -31,10 +26,11 @@ if (isset($_POST['btn'])) {
         // Replace placeholders with actual values
         $templateProcessor->setValue('name', $name);
         $templateProcessor->setValue('country', $country);
-        $templateProcessor->setValue('start_date', $start_date);
+        $templateProcessor->setValue('start_date', $first_date);
         $templateProcessor->setValue('company', $company);
         $templateProcessor->setValue('address', $address);
         $templateProcessor->setValue('position', $position);
+        $templateProcessor->setValue('endDate', $endDate);
 
         // Save the modified DOCX file
         $outputFile = 'output.docx';
@@ -47,14 +43,15 @@ if (isset($_POST['btn'])) {
         echo "Docx file modify by This Update Content : - <br>";
         echo "Name: $name <br>";
         echo "Country: $country <br>";
-        echo "Agreement Date: $start_date <br>";
+        echo "Agreement Date: $first_date <br>";
         echo "Company Name: $company <br>";
         echo "Company Address: $address <br>";
         echo "Position: $position <br>";
-        echo "Position: $formatted_date <br>";
+        echo "Expaire Date: $endDate <br>";
 
     } catch (Exception $e) {
         echo "Error: Could not load the template or save the document. " . $e->getMessage();
     }
 }
+
 ?>
