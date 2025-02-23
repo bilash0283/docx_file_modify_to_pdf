@@ -8,12 +8,10 @@ if (isset($_POST['btn'])) {
     // Get data from POST
     $name = strtoupper($_POST['name']);
     $country = strtoupper($_POST['country']);
-    $start_date = strtoupper($_POST['start_date']);
     $company = strtoupper($_POST['company']);
     $address = ucwords(strtolower($_POST['address']));
     $position = strtoupper($_POST['position']);
-
-    $first_date = date("d F Y", strtotime($start_date));
+    $first_date = date("d F Y");
 
     $date = new DateTime($first_date);
     $date->modify("+2 years"); 

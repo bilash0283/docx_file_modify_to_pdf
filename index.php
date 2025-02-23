@@ -45,11 +45,6 @@
                                 <input type="text" name="country" placeholder="Country Name" id="country"
                                     class="form-control my-1">
                             </div>
-                            <div class="my-2">
-                                <label for="start_date">Agrement Start Date</label>
-                                <input type="date" name="start_date" id="start_date"
-                                    class="form-control my-1">
-                            </div>
                             <input type="submit" name="btn" class="btn btn-success btn-sm" value="Submit" />
                         </form>
                     </div>
