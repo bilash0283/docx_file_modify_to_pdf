@@ -5,45 +5,41 @@ use PhpOffice\PhpWord\IOFactory;
 use Mpdf\Mpdf;
 
 // Function to convert DOCX to PDF
-function convertDocxToPdf($docxFile, $pdfFile)
+function convertDocxToPdf($inputFile, $outputFile)
 {
     // Check if DOCX file exists
-    if (!file_exists($docxFile)) {
-        die("File not found: $docxFile");
+    if (!file_exists($inputFile)) {
+        die("Error: File not found - " . $inputFile);
     }
 
-    // Load DOCX File
-    $phpWord = IOFactory::load($docxFile);
-
-    // Save the DOCX file as HTML
-    $htmlWriter = IOFactory::createWriter($phpWord, 'HTML');
-    ob_start();
-    $htmlWriter->save('php://output');
-    $htmlContent = ob_get_clean();
+    // Load DOCX file using PHPWord
+    $phpWord = IOFactory::load($inputFile);
 
     // Initialize mPDF
     $mpdf = new Mpdf();
-
-    // Ensure UTF-8 Encoding
-    $mpdf->WriteHTML('<meta charset="UTF-8">');
-
-    // Write the converted HTML content to PDF
+    
+    // Create an HTML Writer for the DOCX file
+    $htmlWriter = IOFactory::createWriter($phpWord, 'HTML');
+    
+    // Capture the HTML output of the DOCX file
+    ob_start();
+    $htmlWriter->save('php://output');
+    $htmlContent = ob_get_clean();
+    
+    // Write HTML content to the PDF
+    $mpdf->WriteHTML('<meta charset="UTF-8">');  // Set UTF-8 encoding
     $mpdf->WriteHTML($htmlContent);
 
-    // Save the PDF
-    $mpdf->Output($pdfFile, \Mpdf\Output\Destination::FILE);
-
-    return $pdfFile;
+    // Save the output as a PDF
+    $mpdf->Output($outputFile, \Mpdf\Output\Destination::FILE);
 }
 
-// Example Usage
-$inputDocx = 'output.docx'; // Your input DOCX file
-$outputPdf = 'final_outpu.pdf'; // Output PDF file
+// Usage example
+$inputDocx = 'output.docx';  // Path to your DOCX file
+$outputPdf = 'fainal_output.pdf';  // Path to output PDF file
 
-// Convert and notify user
-if (convertDocxToPdf($inputDocx, $outputPdf)) {
-    echo "✅ PDF successfully created: <a href='$outputPdf'>Download PDF</a>";
-} else {
-    echo "❌ Conversion failed.";
-}
+// Convert DOCX to PDF
+convertDocxToPdf($inputDocx, $outputPdf);
+
+echo "PDF generated successfully: <a href='$outputPdf'>Download PDF</a>";
 ?>
