@@ -31,9 +31,8 @@ if (isset($_POST['btn'])) {
         $templateProcessor->setValue('endDate', $endDate);
 
         // Save the modified DOCX file
-        $outputFile = $name.'.docx';
+        $outputFile = 'output.docx';
         $templateProcessor->saveAs($outputFile);
-        unlink($outputFile);
 
         // Provide the download link
         echo "Document generated successfully: <a href='$outputFile' download>Download Here</a> <br> <br>";
