@@ -1,60 +1,41 @@
 <?php
-require 'vendor/autoload.php';  // Ensure you have Composer's autoload file included
+require 'vendor/autoload.php';
 
 use PhpOffice\PhpWord\IOFactory;
-use PhpOffice\PhpWord\PhpWord;
+use Mpdf\Mpdf;
 
-function convertDocxToPdf($inputDocx, $outputPdf)
+function convertDocxToPdf($inputFile, $outputFile)
 {
     // Load DOCX file
-    $phpWord = IOFactory::load($inputDocx);
-    
-    // Create a new PDF instance
-    $pdf = new \TCPDF();
-    
-    // Add a page to the PDF
-    $pdf->AddPage();
-    
-    // Set font for the PDF
-    $pdf->SetFont('helvetica', '', 12);
-    
-    // Loop through the DOCX sections and write content to the PDF
-    foreach ($phpWord->getSections() as $section) {
-        foreach ($section->getElements() as $element) {
-            if (get_class($element) === 'PhpOffice\PhpWord\Element\Text') {
-                $pdf->Write(0, $element->getText() . "\n");
-            } elseif (get_class($element) === 'PhpOffice\PhpWord\Element\TextRun') {
-                foreach ($element->getElements() as $textElement) {
-                    $pdf->Write(0, $textElement->getText() . "\n");
-                }
-            }
-        }
-    }
-    
-    // Output PDF to the specified location
-    $pdf->Output($outputPdf, 'F');
+    $phpWord = IOFactory::load($inputFile);
+
+    // Create an HTML writer
+    $htmlWriter = IOFactory::createWriter($phpWord, 'HTML');
+    ob_start();
+    $htmlWriter->save('php://output');
+    $htmlContent = ob_get_clean();
+
+    // Initialize mPDF
+    $mpdf = new Mpdf();
+
+    // Write HTML to PDF
+    $mpdf->WriteHTML($htmlContent);
+    $mpdf->Output($outputFile, \Mpdf\Output\Destination::FILE);
+
+    return $outputFile;
 }
 
-// Check if a file is uploaded
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['file'])) {
-    // Get the uploaded DOCX file
-    $docxFile = $_FILES['file']['tmp_name'];
-    $fileName = $_FILES['file']['name'];
-    
-    // Ensure the file is a DOCX file
-    $fileExtension = pathinfo($fileName, PATHINFO_EXTENSION);
-    if (strtolower($fileExtension) != 'docx') {
-        die("Please upload a valid DOCX file.");
-    }
+// Usage Example
+$inputDocx = 'output.docx'; // Replace with your file path
+$outputPdf = 'output.pdf';
 
-    // Specify the output PDF file name and path
-    $outputPdf = 'uploads/' . pathinfo($fileName, PATHINFO_FILENAME) . '.pdf';
-    
-    // Convert DOCX to PDF
-    convertDocxToPdf($docxFile, $outputPdf);
-    
-    // Provide a link to download the converted PDF file
-    echo "Conversion successful! <br>";
-    echo "<a href='$outputPdf' download>Click here to download the PDF file</a>";
-}
+convertDocxToPdf($inputDocx, $outputPdf);
+
+
+
+echo "PDF successfully created: " . $outputPdf;
+
+
+
+
 ?>
