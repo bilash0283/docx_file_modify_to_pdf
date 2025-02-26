@@ -4,12 +4,18 @@ require 'vendor/autoload.php';
 use PhpOffice\PhpWord\IOFactory;
 use Mpdf\Mpdf;
 
-function convertDocxToPdf($inputFile, $outputFile)
+// Function to convert DOCX to PDF
+function convertDocxToPdf($docxFile, $pdfFile)
 {
-    // Load DOCX file
-    $phpWord = IOFactory::load($inputFile);
+    // Check if DOCX file exists
+    if (!file_exists($docxFile)) {
+        die("File not found: $docxFile");
+    }
 
-    // Create an HTML writer
+    // Load DOCX File
+    $phpWord = IOFactory::load($docxFile);
+
+    // Save the DOCX file as HTML
     $htmlWriter = IOFactory::createWriter($phpWord, 'HTML');
     ob_start();
     $htmlWriter->save('php://output');
@@ -18,24 +24,26 @@ function convertDocxToPdf($inputFile, $outputFile)
     // Initialize mPDF
     $mpdf = new Mpdf();
 
-    // Write HTML to PDF
-    $mpdf->WriteHTML($htmlContent);
-    $mpdf->Output($outputFile, \Mpdf\Output\Destination::FILE);
+    // Ensure UTF-8 Encoding
+    $mpdf->WriteHTML('<meta charset="UTF-8">');
 
-    return $outputFile;
+    // Write the converted HTML content to PDF
+    $mpdf->WriteHTML($htmlContent);
+
+    // Save the PDF
+    $mpdf->Output($pdfFile, \Mpdf\Output\Destination::FILE);
+
+    return $pdfFile;
 }
 
-// Usage Example
-$inputDocx = 'output.docx'; // Replace with your file path
-$outputPdf = 'output.pdf';
+// Example Usage
+$inputDocx = 'output.docx'; // Your input DOCX file
+$outputPdf = 'final_outpu.pdf'; // Output PDF file
 
-convertDocxToPdf($inputDocx, $outputPdf);
-
-
-
-echo "PDF successfully created: " . $outputPdf;
-
-
-
-
+// Convert and notify user
+if (convertDocxToPdf($inputDocx, $outputPdf)) {
+    echo "✅ PDF successfully created: <a href='$outputPdf'>Download PDF</a>";
+} else {
+    echo "❌ Conversion failed.";
+}
 ?>
