@@ -38,6 +38,7 @@ if (isset($_POST['btn'])) {
         echo "Document generated successfully: <a href='$outputFile' download>Download Here</a> <br> <br>";
 
         // Debug: Show the replacements
+        echo "DEMO DETAILS SHOW FOR CONFIRM YOUR DETAILS <br><br>";
         echo "Docx file modify by This Update Content : - <br>";
         echo "Name: $name <br>";
         echo "Country: $country <br>";
