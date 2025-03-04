@@ -39,6 +39,7 @@ if (isset($_POST['btn'])) {
 
         // Debug: Show the replacements
         echo "DEMO DETAILS SHOW FOR CONFIRM YOUR DETAILS <br><br>";
+
         echo "Docx file modify by This Update Content : - <br>";
         echo "Name: $name <br>";
         echo "Country: $country <br>";
@@ -55,5 +56,11 @@ if (isset($_POST['btn'])) {
 
 ?>
 
-
 <a href="convert.php">PDF file convert</a>
+
+
+
+
+
+
+

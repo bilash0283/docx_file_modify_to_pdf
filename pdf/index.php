@@ -44,5 +44,15 @@ if (isset($_POST['send_email'])) {
         <button type="submit" name="convert">Convert DOCX to PDF</button>
         <button type="submit" name="send_email">Send PDF via Email</button>
     </form>
+
+    <section>
+        <div class="contaienr">
+            <div class="row">
+                <div class="col-md-6 mx-auto">
+                    <h1 class="text-uppercase text-center">modify docx file to pdf file convert</h1>
+                </div>
+            </div>
+        </div>
+    </section>
 </body>
 </html>
