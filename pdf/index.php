@@ -6,7 +6,6 @@ if (isset($_POST['convert'])) {
     // Convert DOCX to PDF using LibreOffice
     $command = "libreoffice --headless --convert-to pdf $docxFile --outdir " . dirname($pdfFile);
     shell_exec($command);
-
     echo "<p>Conversion completed! <a href='$pdfFile' download>Download PDF</a></p>";
 }
 
@@ -34,6 +33,7 @@ if (isset($_POST['send_email'])) {
 }
 ?>
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,9 +50,21 @@ if (isset($_POST['send_email'])) {
             <div class="row">
                 <div class="col-md-6 mx-auto">
                     <h1 class="text-uppercase text-center">modify docx file to pdf file convert</h1>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <img src="https://tinyurl.com/2d8nwzm8" alt="" class="img-fluid">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 </body>
 </html>
+
+
+
+
+
+
