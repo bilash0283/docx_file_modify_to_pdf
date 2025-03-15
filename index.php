@@ -11,7 +11,7 @@
 
 <body>
     <div class="container">
-        <div class="row my-5">
+        <div class="row my-5 mx-auto">
             <div class="col-md-6 mx-auto">
                 <div class="card">
                     <div class="card-head">

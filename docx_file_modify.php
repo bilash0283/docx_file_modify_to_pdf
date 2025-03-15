@@ -35,7 +35,7 @@ if (isset($_POST['btn'])) {
         $templateProcessor->saveAs($outputFile);
 
         // Provide the download link
-        echo "Document generated successfully: <a href='$outputFile' download>Download Here</a> <br> <br>";
+        echo "Document generated successfully: <a href='$outputFile' download style='padding:8px 5px;background-color:green;color:white;text-decoration:none; border-radius:10px;'>Download Here</a> <br> <br>";
 
         // Debug: Show the replacements
         echo "DEMO DETAILS SHOW FOR CONFIRM YOUR DETAILS <br><br>";
