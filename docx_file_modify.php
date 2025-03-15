@@ -35,10 +35,10 @@ if (isset($_POST['btn'])) {
         $templateProcessor->saveAs($outputFile);
 
         // Provide the download link
-        echo "Document generated successfully: <a href='$outputFile' download style='padding:8px 5px;background-color:green;color:white;text-decoration:none; border-radius:10px;'>Download Docx</a> <br> <br>";
+        echo "Document generated successfully: <a href='$outputFile' download style='padding:6px 8px;background-color:green;color:white;text-decoration:none; border-radius:10px; font-size:12px;'>Download Docx</a> <br> <br>";
 
         // Debug: Show the replacements
-        echo "DEMO DETAILS SHOW FOR CONFIRM YOUR DETAILS <br><br>";
+        echo "DEMO DETAILS SHOW FOR CONFIRM YOUR DETAILS <br>";
 
         echo "Docx file modify by This Update Content : - <br>";
         echo "Name: $name <br>";
@@ -59,7 +59,12 @@ if (isset($_POST['btn'])) {
 <br>
 <br>
 
-<a href="convert.php" style="padding:8px 5px ;background-color:green;color:white;text-decoration:none;border-radius:10px;">Download PDF</a>
+<a href="convert.php" style="padding:6px 8px ;background-color:green;color:white;text-decoration:none;border-radius:10px;font-size:12px; ">Download PDF</a>
+
+
+
+
+
 
 
 
