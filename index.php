@@ -15,7 +15,7 @@
             <div class="col-md-6 mx-auto">
                 <div class="card">
                     <div class="card-head">
-                        <h2 class="text-center text-semibold text-success">Fill The From for Agent Agrement</h2>
+                        <h2 class="text-center text-semibold text-success">Fill The From for Agent Agrement and Download PDF or Word FIle</h2>
                         
                     </div>
                     <div class="card-body">
