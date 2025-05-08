@@ -11,10 +11,10 @@ if (isset($_POST['convert'])) {
 }
 
 if (isset($_POST['send_email'])) {
-    $to = "recipient@example.com"; // Change this to recipient email
+    $to = "recipient@example.com"; 
     $subject = "Converted PDF File";
     $message = "Please find the attached PDF file.";
-    $headers = "From: yourname@example.com"; // Change this to your email
+    $headers = "From: yourname@example.com"; 
 
     // Attachment
     $file = "output.pdf";
@@ -42,7 +42,7 @@ if (isset($_POST['send_email'])) {
 <body>
     <form method="post">
         <button type="submit" name="convert">Convert DOCX to PDF</button>
-        <button type="submit" name="send_email">Send PDF via Email</button>
+        <button type="submit" name="send_email" style="width:120px;height:40px;background-color:green;border-radius:20px;text-color:white;">Send PDF via Email</button>
     </form>
 </body>
 </html>
