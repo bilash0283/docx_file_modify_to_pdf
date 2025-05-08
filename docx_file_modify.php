@@ -56,4 +56,7 @@ if (isset($_POST['btn'])) {
 ?>
 
 
-<a href="convert.php">PDF file convert</a>
+<a href="convert.php" style="width:12px;height:40px;background-color:green;text-color:white;border-radius:20px;">PDF file convert</a>
+
+
+
